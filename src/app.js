@@ -22,6 +22,10 @@ app.use(
     })
 );
 
+app.get("/", (req, res)=>{
+    res.send("congratulation your app is working perfectly")
+})
+
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/application", applicationRouter)
 app.use("/api/v1/job", jobrouter)
