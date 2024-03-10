@@ -26,6 +26,7 @@ const Register = async (req, res, next) => {
 
  const Login = async (req, res, next)=>{
 
+   try{
     const {email, password ,role}= req.body 
     if(!email || !password) return res.status(400).send({message:"please entered email and password"})
 
@@ -40,6 +41,10 @@ const Register = async (req, res, next) => {
 
 
     sendToken(user, res, "logedIn successfuly", 200)
+    
+   }catch(error){
+console.log(error)
+   }
     
 }
 

@@ -9,9 +9,9 @@ const app = express()
 
 app.use(cors({
     origin: "http://localhost:5173",
-    method: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-}))
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true
+}));
 app.use(express.json())
 app.use(cookieParser());
 
