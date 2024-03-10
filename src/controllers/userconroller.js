@@ -1,29 +1,33 @@
 import User from "../models/usermodel.js"
 import {sendToken} from "../utils/jwtToken.js"
 const Register = async (req, res, next) => {
-    const { name, email, password, role, phone } = req.body
-    if (
-        !name || !email || !role || !phone || !password
-    ) {
-     return   res.status(400).send({message:"all field are required"})
+    try{
+        const { name, email, password, role, phone } = req.body
+        if (
+            !name || !email || !role || !phone || !password
+        ) {
+         return   res.status(400).send({message:"all field are required"})
+        }
+        const userExist = await User.findOne({email})
+        if(userExist) return res.status(400).send({message:"the user is already exist"})
+    
+        const createdUser = await User.create({
+            name,
+            password,
+            email,
+            phone,
+            role
+        })
+    
+        const user = await User.findById(createdUser._id).select("-password")
+        if(!user) return res.status(500).send({message:"somthing went wrong while creating user"})
+    
+        sendToken(user, res, "user registered successfuly" , 200)
+    }catch(error){
+console.log(error)
+res.status(400).send({message:"error is accoure while registering"})
+   
     }
-    const userExist = await User.findOne({email})
-    if(userExist) return res.status(400).send({message:"the user is already exist"})
-
-    const createdUser = await User.create({
-        name,
-        password,
-        email,
-        phone,
-        role
-    })
-
-    const user = await User.findById(createdUser._id).select("-password")
-    if(!user) return res.status(500).send({message:"somthing went wrong while creating user"})
-
-    sendToken(user, res, "user registered successfuly" , 200)
-}
-
  const Login = async (req, res, next)=>{
 
    try{

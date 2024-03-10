@@ -1,21 +1,20 @@
 {
-    "builds": [
-      {
-        "src": "src/index.js",
-        "use": "@vercel/node"
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://jobseekerfrontend.vercel.app",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Credentials": "true"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "src/index.js",
-        "headers": {
-          "Access-Control-Allow-Origin": "https://jobseekerfrontend.vercel.app",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-          "Access-Control-Allow-Credentials": "true" 
-        }
-      }
-    ]
-  }
-  
+    }
+  ]
+}
