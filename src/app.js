@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     res.send({ message: "Congratulations, your app is working perfectly!" });
 });
 
-
+app.options("*", cors(corsOptions))
 
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/application", applicationRouter)
