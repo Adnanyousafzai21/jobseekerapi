@@ -8,7 +8,7 @@ import cors from "cors"
 const app = express()
 
 const corsOptions = {
-    origin: "*", 
+    origin: "https://jobseekerfrontend.vercel.app", 
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   };
