@@ -7,12 +7,12 @@ import fileUpload from "express-fileupload"
 import cors from "cors"
 const app = express()
 
-// const corsOptions = {
-//     origin: "*", 
-//     methods: ["GET", "POST", "DELETE", "PUT"],
-//     credentials: true,
-//   };
-app.use(cors());
+const corsOptions = {
+    origin: "*", 
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  };
+app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cookieParser());
 
