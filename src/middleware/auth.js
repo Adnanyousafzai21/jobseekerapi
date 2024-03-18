@@ -6,11 +6,15 @@ const isAutherized = async (req, res, next)=>{
 try{
     const {token} = req.cookies
 
+    console.log("token",token)
     if(!token){
+
+      console.log("user is not authorized")
         return res.status(400).send({message:"user is not authorized"})
+      
     }
     const decode =  await Jwt.verify(token, process.env.JWT_SECRET_KEY)
-    console.log("decode token", decode)
+
 
     req.user = await User.findById(decode.id)
     next()
